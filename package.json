@@ -1,0 +1,22 @@
+{
+  "name": "pos-data-analyst",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ctuyen/POS-data-analyst.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ctuyen/POS-data-analyst/issues"
+  },
+  "homepage": "https://github.com/ctuyen/POS-data-analyst#readme",
+  "dependencies": {
+    "node-xlsx": "^0.15.0"
+  }
+}
