@@ -1,6 +1,6 @@
 const xlsx = require("node-xlsx").default;
 
-const updateReportOne = require("./scripts/report-one")
+const generateReportOne = require("./scripts/report-one")
 
 var fs = require("fs");
 var wstream = fs.createWriteStream("outputs/template1.xlsx");

@@ -1,4 +1,4 @@
-function updateReportOne(workSheets) {
+function generateReportOne(workSheets) {
     let dateOrderSet = new Set();
     let productMap = new Map();
     let lastDateOrder;
@@ -95,4 +95,4 @@ function updateReportOne(workSheets) {
     return resultArray
   }
 
-  module.exports = updateReportOne
+  module.exports = generateReportOne
