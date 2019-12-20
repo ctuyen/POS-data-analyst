@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ctuyen/POS-data-analyst#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "node-xlsx": "^0.15.0"
   }
 }
