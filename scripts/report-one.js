@@ -39,10 +39,7 @@ function generateReportOne(workSheets) {
       if (productMap.has(keyString)) {
         if (dateOrderSet.has(dateOrder + barcode)) {
           let currentQuantityArray = productMap.get(keyString);
-          currentQuantityArray.pop();
-          let currentQuantity = productMap.get(keyString)[
-            productMap.get(keyString).length - 1
-          ];
+          let currentQuantity = currentQuantityArray.pop();
           productMap.set(keyString, [
             ...currentQuantityArray,
             currentQuantity + quantity

@@ -2,9 +2,9 @@ const { timegaps } = require('../utils/time-gap')
 const timegapdefine = require('../utils/time-gap')
 
 function generateReportTwo(workSheets) {
-    let dateOrderSet = new Set();
+    let datetimeOrderSet = new Set();
     let productMap = new Map();
-    let lastDateOrder;
+    let lastTimeOrder;
   
     for (const [i, row] of workSheets[0].data.entries()) {
       if (i === 0) continue; // header
@@ -30,16 +30,16 @@ function generateReportTwo(workSheets) {
         uoM;
   
       if (i === 1) {
-        lastDateOrder = dateOrder;
+        lastTimeOrder = timestamp;
       }
 
       if (productMap.has(keyString)) {
-        if (dateOrderSet.has(dateOrder + barcode)) {
+        if (datetimeOrderSet.has(String(timestamp) + String(dateOrder) + String(barcode))) {
+
+          // If it's the same product, in the same day, at the same time gap => update the last quantity
           let currentQuantityArray = productMap.get(keyString);
           currentQuantityArray.pop();
-          let currentQuantity = productMap.get(keyString)[
-            productMap.get(keyString).length - 1
-          ];
+          let currentQuantity = currentQuantityArray.pop()
           productMap.set(keyString, [
             ...currentQuantityArray,
             currentQuantity + quantity
@@ -47,8 +47,8 @@ function generateReportTwo(workSheets) {
         } else {
           let currentQuantityArray = productMap.get(keyString);
           let zerosArray = [];
-          let dateGap = dateOrder - lastDateOrder;
-          for (let i = 0; i < dateGap; i++) {
+          let timeGap = Math.abs(timestamp - lastTimeOrder);
+          for (let i = 0; i < timeGap; i++) {
             zerosArray.push(0);
           }
           productMap.set(keyString, [
@@ -56,13 +56,13 @@ function generateReportTwo(workSheets) {
             ...zerosArray,
             quantity
           ]);
-          dateOrderSet.add(dateOrder + barcode);
+          datetimeOrderSet.add(String(timestamp) + String(dateOrder) + String(barcode));
         }
       } else {
         productMap.set(keyString, [quantity]);
       }
   
-      lastDateOrder = dateOrder;
+      lastTimeOrder = timestamp;
     }
   
     let resultArray = [];
@@ -86,9 +86,9 @@ function generateReportTwo(workSheets) {
         uoM,
         ...value
       ];
-      if (insertingRow.length < 53) {
+      if (insertingRow.length < 341) {
         let zerosArray = [];
-        for (let i = 0; i < 53 - insertingRow.length; i++) {
+        for (let i = 0; i < 341 - insertingRow.length; i++) {
           zerosArray.push(0);
         }
         insertingRow = [...insertingRow, ...zerosArray];

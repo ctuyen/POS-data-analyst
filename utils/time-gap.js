@@ -1,6 +1,6 @@
 const {timegaps} = require('../utils/enums')
 
-module.exports = function(timeNum){
+module.exports = function(x){
     // 12:00PM - 1 + 12:00AM - 0
 
     // 48 periods of 30 mins
