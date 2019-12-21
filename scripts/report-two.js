@@ -1,3 +1,6 @@
+const { timegaps } = require('../utils/time-gap')
+const timegapdefine = require('../utils/time-gap')
+
 function generateReportTwo(workSheets) {
     let dateOrderSet = new Set();
     let productMap = new Map();
@@ -12,6 +15,8 @@ function generateReportTwo(workSheets) {
       let barcode = row[2];
       let uoM = row[3];
       let dateOrder = row[4];
+      let timestamp = timegapdefine(row[5]);
+
       let quantity = Number(row[6]);
       let keyString =
         storename +
@@ -27,7 +32,7 @@ function generateReportTwo(workSheets) {
       if (i === 1) {
         lastDateOrder = dateOrder;
       }
-  
+
       if (productMap.has(keyString)) {
         if (dateOrderSet.has(dateOrder + barcode)) {
           let currentQuantityArray = productMap.get(keyString);
