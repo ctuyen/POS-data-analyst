@@ -10,7 +10,7 @@ let reportThree = [];
 let reportFour = [];
 
 const workSheets = xlsx.parse(`${__dirname}/MM-POS-Data-Test-Report-1.xlsx`);
-reportOne = updateReportOne(workSheets);
+reportOne = generateReportOne(workSheets);
 
 var buffer = xlsx.build([{ name: "Outcome Report1", data: reportOne }]); // Returns a buffer
 wstream.write(buffer);

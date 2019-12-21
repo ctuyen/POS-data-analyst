@@ -1,4 +1,13 @@
-let header2 = [
+module.exports.header1 = [
+  "","","","","Quantity Per Day","","","","","",
+  "","","","","","","","","","",
+  "","","","","","","","","","",
+  "","","","","","","","","","",
+  "","","","","","","","","","",
+  "","",""
+]
+
+module.exports.header2 = [
     "Store Code",
     "Store Name",
     "Product Name",

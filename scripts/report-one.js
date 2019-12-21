@@ -1,3 +1,5 @@
+const { header1, header2 } = require('../misc/headersOne')
+
 function generateReportOne(workSheets) {
     let dateOrderSet = new Set();
     let productMap = new Map();
@@ -24,10 +26,16 @@ function generateReportOne(workSheets) {
         "🖕" +
         uoM;
   
+      var resultArray = [];
       if (i === 1) {
         lastDateOrder = dateOrder;
+        resultArray.push(header1)
+        resultArray.push(header2)
+
+        console.log('What is the resultArray now?')
+        console.log(resultArray)
       }
-  
+
       if (productMap.has(keyString)) {
         if (dateOrderSet.has(dateOrder + barcode)) {
           let currentQuantityArray = productMap.get(keyString);
@@ -60,7 +68,7 @@ function generateReportOne(workSheets) {
       lastDateOrder = dateOrder;
     }
   
-    let resultArray = [];
+    
   
     productMap.forEach((value, key, map) => {
       // key: storecode + '-' + barcode
@@ -91,8 +99,12 @@ function generateReportOne(workSheets) {
   
       resultArray.push(insertingRow);
     });
+
+    console.log('======= finishedArray after =======')
+    let finishedArray = [header1, header2, ...resultArray]
+    console.log(finishedArray)
   
-    return resultArray
+    return finishedArray
   }
 
   module.exports = generateReportOne
