@@ -1,5 +1,6 @@
 const { timegaps } = require('../utils/time-gap')
 const timegapdefine = require('../utils/time-gap')
+const { header1, header2, header3 } = require('../misc/headersTwo')
 
 function generateReportTwo(workSheets) {
     let datetimeOrderSet = new Set();
@@ -56,7 +57,7 @@ function generateReportTwo(workSheets) {
             ...zerosArray,
             quantity
           ]);
-          datetimeOrderSet.add(String(timestamp) + String(dateOrder) + String(barcode));
+          datetimeOrderSet.add(String(timestamp) + '-' + String(dateOrder) + '-' + String(barcode));
         }
       } else {
         productMap.set(keyString, [quantity]);
@@ -79,10 +80,10 @@ function generateReportTwo(workSheets) {
       let uoM = infos[4];
   
       let insertingRow = [
-        storename,
         storecode,
-        barcode,
+        storename,
         productname,
+        barcode,
         uoM,
         ...value
       ];
@@ -96,8 +97,9 @@ function generateReportTwo(workSheets) {
   
       resultArray.push(insertingRow);
     });
-  
-    return resultArray
+
+    let finishedArray = [header1, header2, header3, ...resultArray]
+    return finishedArray
   }
 
   module.exports = generateReportTwo

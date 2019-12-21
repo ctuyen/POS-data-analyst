@@ -79,10 +79,10 @@ function generateReportOne(workSheets) {
       let uoM = infos[4];
   
       let insertingRow = [
-        storename,
         storecode,
-        barcode,
+        storename,
         productname,
+        barcode,
         uoM,
         ...value
       ];
@@ -96,11 +96,7 @@ function generateReportOne(workSheets) {
   
       resultArray.push(insertingRow);
     });
-
-    console.log('======= finishedArray after =======')
     let finishedArray = [header1, header2, ...resultArray]
-    console.log(finishedArray)
-  
     return finishedArray
   }
 
